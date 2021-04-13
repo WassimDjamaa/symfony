@@ -18,11 +18,6 @@ class Result
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_results;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $result_state;
@@ -45,18 +40,6 @@ class Result
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdResults(): ?int
-    {
-        return $this->id_results;
-    }
-
-    public function setIdResults(int $id_results): self
-    {
-        $this->id_results = $id_results;
-
-        return $this;
     }
 
     public function getResultState(): ?bool

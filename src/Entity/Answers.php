@@ -18,11 +18,6 @@ class Answers
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
-     */
-    private $id_answer;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $libelle;
@@ -35,18 +30,6 @@ class Answers
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getIdAnswer(): ?int
-    {
-        return $this->id_answer;
-    }
-
-    public function setIdAnswer(int $id_answer): self
-    {
-        $this->id_answer = $id_answer;
-
-        return $this;
     }
 
     public function getLibelle(): ?string
