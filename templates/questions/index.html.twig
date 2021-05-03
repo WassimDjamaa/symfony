@@ -34,5 +34,15 @@
         </tbody>
     </table>
 
+<<<<<<< HEAD
     <a href="{{ path('questions_new') }}">Nouvelle question ?</a>
+=======
+    <a href="{{ path('questions_new') }}">Create new</a>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-danger" role="alert">{{ message }}</div>
+    {% endfor %}
+
+
+>>>>>>> 26cbce725a5d5b70e05359a7522d7c9896ca5774
 {% endblock %}
