@@ -17,11 +17,14 @@ class AnswersController extends AbstractController
     #[Route('/{id}', name: 'answers_index', methods: ['GET'])]
     public function index(AnswersRepository $answersRepository, Questions $question): Response
     {
+        
         return $this->render('answers/index.html.twig', [
             'questions' => $question,
-            'answers' => array(['id' => $question.getId()]),
+            //'answers' => $answersRepository->findBy(array('id_question' => $question->getId())),
+            'answers'=> $question->getAnswers(),
         ]);
     }
+
 
     #[Route('/new/{id}', name: 'answers_new', methods: ['GET', 'POST'])]
     public function new(Request $request, Questions $question): Response

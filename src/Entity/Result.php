@@ -42,6 +42,13 @@ class Result
         return $this->id;
     }
 
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     public function getResultState(): ?bool
     {
         return $this->result_state;

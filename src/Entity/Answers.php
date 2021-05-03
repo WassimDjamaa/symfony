@@ -18,7 +18,7 @@ class Answers
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $libelle;
 
@@ -31,6 +31,14 @@ class Answers
     {
         return $this->id;
     }
+
+    public function setId(?int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
 
     public function getLibelle(): ?string
     {

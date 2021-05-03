@@ -30,19 +30,19 @@ class Questions
     private $is_multiple;
 
     /**
-     * @ORM\OneToMany(targetEntity=Answers::class, mappedBy="id")
+     * @ORM\OneToMany(targetEntity=Answers::class, mappedBy="id_question")
      */
     private $answers;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="id")
+   /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="questions")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $id_users;
+    private $user;
 
     public function __construct()
     {
         $this->answers = new ArrayCollection();
-        $this->id_users = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -86,7 +86,7 @@ class Questions
     {
         if (!$this->answers->contains($answer)) {
             $this->answers[] = $answer;
-            $answer->setIdQuestions($this);
+            $answer->setIdQuestion($this);
         }
 
         return $this;
@@ -104,34 +104,12 @@ class Questions
         return $this;
     }
 
-    /**
-     * @return Collection|Result[]
-     */
-    public function getIdUsers(): Collection
-    {
-        return $this->id_users;
-    }
-
-    public function addIdUser(Result $idUser): self
-    {
-        if (!$this->id_users->contains($idUser)) {
-            $this->id_users[] = $idUser;
-            $idUser->setId($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdUser(Result $idUser): self
-    {
-        if ($this->id_users->removeElement($idUser)) {
-            // set the owning side to null (unless already changed)
-            if ($idUser->getId() === $this) {
-                $idUser->setId(null);
-            }
-        }
-
-        return $this;
+    public function getUser(): ?User     
+    {         return $this->user;     }      
+    
+    public function setUser(?User $user): self     
+    {         $this->user = $user;          
+        return $this;     
     }
 
     public function __toString()
