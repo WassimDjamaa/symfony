@@ -30,12 +30,12 @@ class Questions
     private $is_multiple;
 
     /**
-     * @ORM\OneToMany(targetEntity=Answers::class, mappedBy="id_question")
+     * @ORM\OneToMany(targetEntity=Answers::class, mappedBy="id")
      */
     private $answers;
 
     /**
-     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="id_questions")
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="id")
      */
     private $id_users;
 
@@ -86,7 +86,7 @@ class Questions
     {
         if (!$this->answers->contains($answer)) {
             $this->answers[] = $answer;
-            $answer->setIdQuestion($this);
+            $answer->setIdQuestions($this);
         }
 
         return $this;
@@ -96,8 +96,8 @@ class Questions
     {
         if ($this->answers->removeElement($answer)) {
             // set the owning side to null (unless already changed)
-            if ($answer->getIdQuestion() === $this) {
-                $answer->setIdQuestion(null);
+            if ($answer->getId() === $this) {
+                $answer->setId(null);
             }
         }
 
@@ -116,7 +116,7 @@ class Questions
     {
         if (!$this->id_users->contains($idUser)) {
             $this->id_users[] = $idUser;
-            $idUser->setIdQuestions($this);
+            $idUser->setId($this);
         }
 
         return $this;
@@ -126,11 +126,16 @@ class Questions
     {
         if ($this->id_users->removeElement($idUser)) {
             // set the owning side to null (unless already changed)
-            if ($idUser->getIdQuestions() === $this) {
-                $idUser->setIdQuestions(null);
+            if ($idUser->getId() === $this) {
+                $idUser->setId(null);
             }
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->libelle;
     }
 }

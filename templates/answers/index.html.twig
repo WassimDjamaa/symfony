@@ -31,5 +31,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('answers_new') }}">Create new</a>
+    <a href="{{ path('answers_new', {'id': questions.id}) }}">Create new</a>
 {% endblock %}

@@ -12,7 +12,6 @@ class QuestionsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id_question')
             ->add('libelle')
             ->add('is_multiple')
         ;

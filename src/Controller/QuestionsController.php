@@ -68,6 +68,24 @@ class QuestionsController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/answer', name: 'questions_answer', methods: ['GET', 'POST'])]
+    public function answer(Request $request, Questions $question): Response
+    {
+        $form = $this->createForm(QuestionsType::class, $question);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('questions_index');
+        }
+
+        return $this->render('questions/answer.html.twig', [
+            'question' => $question,
+            'form' => $form->createView(),
+        ]);
+    }
+
     #[Route('/{id}', name: 'questions_delete', methods: ['POST'])]
     public function delete(Request $request, Questions $question): Response
     {

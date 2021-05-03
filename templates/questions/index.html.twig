@@ -21,8 +21,9 @@
                 <td>{{ question.libelle }}</td>
                 <td>{{ question.isMultiple ? 'Yes' : 'No' }}</td>
                 <td>
-                    <a href="{{ path('questions_show', {'id': question.id}) }}">show</a>
-                    <a href="{{ path('questions_edit', {'id': question.id}) }}">edit</a>
+                    <a href="{{ path('answers_index', {'id': question.id}) }}">Réponse</a>
+                    <a href="{{ path('questions_show', {'id': question.id}) }}">Voir</a>
+                    <a href="{{ path('questions_edit', {'id': question.id}) }}">Editer</a>
                 </td>
             </tr>
         {% else %}
@@ -33,5 +34,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('questions_new') }}">Create new</a>
+    <a href="{{ path('questions_new') }}">Nouvelle question ?</a>
 {% endblock %}

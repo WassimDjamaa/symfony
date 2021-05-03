@@ -7,5 +7,5 @@
 
     {{ include('answers/_form.html.twig') }}
 
-    <a href="{{ path('answers_index') }}">back to list</a>
+    <a href="{{ path('answers_index', {'id': questions.id}) }}">back to list</a>
 {% endblock %}
