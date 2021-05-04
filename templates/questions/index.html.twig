@@ -1,48 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Questions index{% endblock %}
+{% block title %}Questions index
+{% endblock %}
 
 {% block body %}
-    <h1>Questions index</h1>
+	<h1>Questions index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Libelle</th>
-                <th>Is_multiple</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for question in questions %}
-            <tr>
-                <td>{{ question.id }}</td>
-                <td>{{ question.libelle }}</td>
-                <td>{{ question.isMultiple ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('answers_index', {'id': question.id}) }}">Réponse</a>
-                    <a href="{{ path('questions_show', {'id': question.id}) }}">Voir</a>
-                    <a href="{{ path('questions_edit', {'id': question.id}) }}">Editer</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Libelle</th>
+				<th>Is_multiple</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for question in questions %}
+				<tr>
+					<td>{{ question.id }}</td>
+					<td>{{ question.libelle }}</td>
+					<td>{{ question.isMultiple ? 'Yes' : 'No' }}</td>
+					<td>
+						<a href="{{ path('answers_index', {'id': question.id}) }}">Réponse</a>
+						<a href="{{ path('questions_answer', {'id': question.id}) }}">Voir</a>
+						<a href="{{ path('questions_edit', {'id': question.id}) }}">Editer</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="5">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-<<<<<<< HEAD
-    <a href="{{ path('questions_new') }}">Nouvelle question ?</a>
-=======
-    <a href="{{ path('questions_new') }}">Create new</a>
+	<a href="{{ path('questions_new') }}">Create new</a>
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-danger" role="alert">{{ message }}</div>
-    {% endfor %}
+	{% for message in app.flashes('success') %}
+		<div class="alert alert-danger" role="alert">{{ message }}</div>
+	{% endfor %}
 
 
->>>>>>> 26cbce725a5d5b70e05359a7522d7c9896ca5774
 {% endblock %}

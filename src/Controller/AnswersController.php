@@ -17,11 +17,10 @@ class AnswersController extends AbstractController
     #[Route('/{id}', name: 'answers_index', methods: ['GET'])]
     public function index(AnswersRepository $answersRepository, Questions $question): Response
     {
-        
         return $this->render('answers/index.html.twig', [
             'questions' => $question,
             //'answers' => $answersRepository->findBy(array('id_question' => $question->getId())),
-            'answers'=> $question->getAnswers(),
+            'answers' => $question->getAnswers(),
         ]);
     }
 
@@ -78,7 +77,7 @@ class AnswersController extends AbstractController
     #[Route('/{id}', name: 'answers_delete', methods: ['POST'])]
     public function delete(Request $request, Answers $answer): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$answer->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $answer->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($answer);
             $entityManager->flush();

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AnswersRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +29,16 @@ class Answers
      */
     private $id_question;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Result::class, mappedBy="answer")
+     */
+    private $results;
+
+    public function __construct()
+    {
+        $this->results = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,6 +57,17 @@ class Answers
         return $this->libelle;
     }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+        return $this;
+    }
+
     public function setLibelle(?string $libelle): self
     {
         $this->libelle = $libelle;
@@ -60,6 +83,36 @@ class Answers
     public function setIdQuestion(?Questions $id_question): self
     {
         $this->id_question = $id_question;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Result[]
+     */
+    public function getResults(): Collection
+    {
+        return $this->results;
+    }
+
+    public function addResult(Result $result): self
+    {
+        if (!$this->results->contains($result)) {
+            $this->results[] = $result;
+            $result->setAnswer($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResult(Result $result): self
+    {
+        if ($this->results->removeElement($result)) {
+            // set the owning side to null (unless already changed)
+            if ($result->getAnswer() === $this) {
+                $result->setAnswer(null);
+            }
+        }
 
         return $this;
     }

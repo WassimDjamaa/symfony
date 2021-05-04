@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Questions
+{% endblock %}
+
+{% block body %}
+	<h1>{{ question.libelle }}</h1>
+	<form action="{{ path('questions_answer', {'id': question.id}) }}" method="post">
+    {% set input_type = question.isMultiple ? 'checkbox' : 'radio' %}
+		{% for answer in  question.answers %}
+			<input type="{{input_type}}" name="answer[]" id="" value="{{answer.id}}">
+
+			{{ answer.libelle }}
+
+			{{ answer.results|length }}
+
+			<br>
+
+		{% endfor %}
+		<button>valider</button>
+	</form>
+
+    <p><a href="{{path('questions_index')}}">retour</a></p>
+
+{% endblock %}

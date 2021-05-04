@@ -2,13 +2,16 @@
 
 namespace App\Controller;
 
+use App\Entity\Result;
+use App\Entity\Answers;
 use App\Entity\Questions;
 use App\Form\QuestionsType;
+use App\Repository\AnswersRepository;
 use App\Repository\QuestionsRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/questions')]
 class QuestionsController extends AbstractController
@@ -43,13 +46,17 @@ class QuestionsController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'questions_show', methods: ['GET'])]
+    //// a modifier ///////////
+    #[Route('/result/{id}', name: 'questions_result', methods: ['GET'])]
     public function show(Questions $question): Response
     {
-        return $this->render('questions/show.html.twig', [
+        return $this->render('questions/result.html.twig', [
             'question' => $question,
         ]);
     }
+
+    //////////////////       //////////////////////////
+
 
     #[Route('/{id}/edit', name: 'questions_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Questions $question): Response
@@ -70,27 +77,32 @@ class QuestionsController extends AbstractController
     }
 
     #[Route('/{id}/answer', name: 'questions_answer', methods: ['GET', 'POST'])]
-    public function answer(Request $request, Questions $question): Response
+    public function answer(Request $request, Questions $question,AnswersRepository $answersRepository): Response
     {
-        $form = $this->createForm(QuestionsType::class, $question);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+        if ($request->getMethod() === 'POST') {
+            $formData = $request->request->get('answer');
+            $entityManager = $this->getDoctrine()->getManager();
+            foreach ($formData as $choiceId) {
+                $resultat = new Result();
+                $resultat->setIdUsers($this->getUser());
+                $resultat->setAdressIp($request->getClientIp());
+                $resultat->setAnswer($answersRepository->find($choiceId));
+                $resultat->setIdQuestions($question);
+                $entityManager->persist($resultat);
+                $entityManager->flush();
+            }
             return $this->redirectToRoute('questions_index');
         }
 
         return $this->render('questions/answer.html.twig', [
             'question' => $question,
-            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'questions_delete', methods: ['POST'])]
     public function delete(Request $request, Questions $question): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$question->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $question->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($question);
             $entityManager->flush();

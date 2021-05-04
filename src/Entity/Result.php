@@ -18,11 +18,6 @@ class Result
     private $id;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $result_state;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adress_ip;
@@ -37,6 +32,12 @@ class Result
      */
     private $id_users;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Answers::class, inversedBy="results")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $answer;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -45,18 +46,6 @@ class Result
     public function setId(?int $id): self
     {
         $this->id = $id;
-
-        return $this;
-    }
-
-    public function getResultState(): ?bool
-    {
-        return $this->result_state;
-    }
-
-    public function setResultState(bool $result_state): self
-    {
-        $this->result_state = $result_state;
 
         return $this;
     }
@@ -93,6 +82,18 @@ class Result
     public function setIdUsers(?User $id_users): self
     {
         $this->id_users = $id_users;
+
+        return $this;
+    }
+
+    public function getAnswer(): ?Answers
+    {
+        return $this->answer;
+    }
+
+    public function setAnswer(?Answers $answer): self
+    {
+        $this->answer = $answer;
 
         return $this;
     }
