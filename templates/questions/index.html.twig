@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Questions index
+{% block title %}Mes Questions
 {% endblock %}
 
 {% block body %}
-	<h1>Questions index</h1>
+	<h1>Mes Questions</h1>
 
 	<table class="table">
 		<thead>
@@ -22,9 +22,11 @@
 					<td>{{ question.libelle }}</td>
 					<td>{{ question.isMultiple ? 'Yes' : 'No' }}</td>
 					<td>
-						<a href="{{ path('answers_index', {'id': question.id}) }}">Réponse</a>
-						<a href="{{ path('questions_answer', {'id': question.id}) }}">Voir</a>
+						<a href="{{ path('answers_index', {'id': question.id}) }}">Réponse(s)</a>
+						<a href="{{ path('questions_answer', {'id': question.id}) }}">Questionnaire</a>
+		
 						<a href="{{ path('questions_edit', {'id': question.id}) }}">Editer</a>
+						<a href="{{ path('questions_result', {'id': question.id}) }}">Résultat</a>
 					</td>
 				</tr>
 			{% else %}
