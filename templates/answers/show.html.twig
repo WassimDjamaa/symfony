@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Answers{% endblock %}
+{% block title %}Réponses{% endblock %}
 
 {% block body %}
-    <h1>Answers</h1>
+    <h1>Réponses</h1>
 
     <table class="table">
         <tbody>
@@ -18,9 +18,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('answers_index') }}">back to list</a>
+    <a href="{{ path('answers_index') }}">retour à la liste</a>
 
-    <a href="{{ path('answers_edit', {'id': answer.id}) }}">edit</a>
+    <a href="{{ path('answers_edit', {'id': answer.id}) }}">édition</a>
 
     {{ include('answers/_delete_form.html.twig') }}
 {% endblock %}
