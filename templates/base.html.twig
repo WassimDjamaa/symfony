@@ -15,26 +15,21 @@
     </head>
     <body class="sb-nav-fixed">
             {% include 'structure/topbar.html.twig' %}
-            <div id="layoutSidenav">
-                {% include 'structure/sidebar.html.twig' %}
-                <div id="layoutSidenav_content">
-                    <main>
-                    {% block body %}{% endblock %}
-                    </main>
-                    <footer class="py-4 bg-light mt-auto">
-                        <div class="container-fluid">
-                            <div class="d-flex align-items-center justify-content-between small">
-                                <div class="text-muted">Copyright &copy; Your Website 2021</div>
-                                <div>
-                                    <a href="#">Politique de confidentialité</a>
-                                    &middot;
-                                    <a href="#">Termes &amp; Conditions</a>
-                                </div>
-                            </div>
-                        </div>
-                    </footer>
-                </div>
+            <div class="container d-flex justify-content-center align-items-center position-relative">    
+                {% block body %}{% endblock %}
             </div>
+            <footer class="py-4 bg-light mt-auto fixed-bottom">
+                <div class="container-fluid">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Wassim Djamaa et Arthur Taillez</div>
+                        <div>
+                            <a href="#">Politique de confidentialité</a>
+                            &middot;
+                            <a href="#">Termes &amp; Conditions</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>

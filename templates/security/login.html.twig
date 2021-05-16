@@ -11,7 +11,7 @@
 
 		{% if app.user %}
 			<div class="mb-3">
-				You are logged in as
+				Vous êtes connecté en tant que 
 				{{ app.user.username }},
 				<a href="{{ path('app_logout') }}">Déconnexion</a>
 			</div>
@@ -19,9 +19,9 @@
 
 		<h1 class="h3 mb-3 font-weight-normal">Veuillez-vous connecter</h1>
 		<label for="inputEmail">Email</label>
-		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
+		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control w-100" required autofocus>
 		<label for="inputPassword">Mot de passe</label>
-		<input type="password" name="password" id="inputPassword" class="form-control" required>
+		<input type="password" name="password" id="inputPassword" class="form-control w-100" required>
 
 		<input
 		type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
@@ -37,15 +37,12 @@
 		        </div>
 		    #}
 
-		<button class="btn btn-lg btn-primary" type="submit">
+		<button class="btn btn-lg btn-secondary d-inline-flex m-2" type="submit">
 			S'identifer
 		</button>
-
-		<p>
-			<a href="{{path('app_forgot_password_request')}}">Mot de passe oublié ?</a>
-		</p>
-
-			<a class="btn btn-lg btn-primary" href="{{path('app_register')}}">Pas encore inscrit ?</a>
+		<a class="btn btn-lg btn-secondary" href="{{path('app_register')}}">Pas encore inscrit ?</a>
+		<a class="" href="{{path('app_forgot_password_request')}}">Mot de passe oublié ?</a>
 	
 	</form>
+</div>
 {% endblock %}
