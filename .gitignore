@@ -20,3 +20,8 @@
 .env
 .env
 composer.lock
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###

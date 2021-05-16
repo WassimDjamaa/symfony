@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\Result;
-use App\Entity\Answers;
 use App\Entity\Questions;
 use App\Form\QuestionsType;
 use App\Repository\AnswersRepository;
@@ -12,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\UX\Chartjs\Builder\ChartBuilderInterface;
+use Symfony\UX\Chartjs\Model\Chart;
 
 #[Route('/questions')]
 class QuestionsController extends AbstractController
@@ -52,6 +53,27 @@ class QuestionsController extends AbstractController
     {
         return $this->render('questions/result.html.twig', [
             'question' => $question,
+        ]);
+    }
+
+    #[Route('/stats', name: 'stats', methods: ['GET'])]
+    public function dashboard(ChartBuilderInterface $chartBuilder)
+    {
+        $chart = $chartBuilder->createChart(Chart::TYPE_LINE);
+        $chart->setData([
+            'labels' => ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+            'datasets' => [
+                [
+                    'label' => 'Sales!',
+                    'backgroundColor' => 'rgb(255, 99, 132)',
+                    'borderColor' => 'rgb(255, 99, 132)',
+                    'data' => [522, 1500, 2250, 2197, 2345, 3122, 3099],
+                ],
+            ],
+        ]);
+
+        return $this->render('questions/stats.html.twig', [
+            'chart' => $chart
         ]);
     }
 
