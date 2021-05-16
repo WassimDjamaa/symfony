@@ -10,23 +10,12 @@
      <h1>Inscription</h1>
 
     <form action="">
-    {{ form_start(registrationForm) }}
-        <div class="email-container">
-            <label for="pseudo">Pseudo</label>
-            {{ form_row(registrationForm.email) }}
-        </div>
-
-        <div class="password-container">
-            <label for="password">Mot de passe</label>
-            {{ form_row(registrationForm.plainPassword) }}
-        </div>
-
-       <div class="check-container">
-            {{ form_row(registrationForm.agreeTerms) }}
-        </div>
-        
+    {{form_start(registrationForm) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword) }}
+        {{ form_row(registrationForm.agreeTerms) }}
         <input type="submit" value="Valider">
-    {{ form_end(registrationForm) }}
+    {{form_end(registrationForm) }}
   </form>
 
    

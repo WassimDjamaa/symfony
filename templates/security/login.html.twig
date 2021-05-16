@@ -22,7 +22,6 @@
 		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control w-100" required autofocus>
 		<label for="inputPassword">Mot de passe</label>
 		<input type="password" name="password" id="inputPassword" class="form-control w-100" required>
-
 		<input
 		type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
@@ -42,7 +41,6 @@
 		</button>
 		<a class="btn btn-lg btn-secondary" href="{{path('app_register')}}">Pas encore inscrit ?</a>
 		<a class="" href="{{path('app_forgot_password_request')}}">Mot de passe oublié ?</a>
-	
 	</form>
 </div>
 {% endblock %}
