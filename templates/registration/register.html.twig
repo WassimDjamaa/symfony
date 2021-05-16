@@ -9,15 +9,14 @@
 
      <h1>Inscription</h1>
 
-    <form action="">
-    {{form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-        <input type="submit" value="Valider">
-    {{form_end(registrationForm) }}
-  </form>
-
    
-
+        {{form_start(registrationForm) }}
+            {{ form_row(registrationForm.email) }}
+            {{ form_row(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+            <input type="submit" value="Valider">
+        {{form_end(registrationForm) }}
+   
 {% endblock %}
