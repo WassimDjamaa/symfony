@@ -1,37 +1,37 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Answers index
+{% block title %}Réponses
 {% endblock %}
 
 {% block body %}
+<div class="container-fluid">
 	<h1>Question :
 		{{ questions.libelle }}</h1>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>Libelle</th>
-				<th>actions</th>
+				<th>Réponse</th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for answer in answers %}
 				<tr>
-					<td>{{ answer.id }}</td>
 					<td>{{ answer.libelle }}</td>
 					<td>
-						<a href="{{ path('answers_show', {'id': answer.id}) }}">show</a>
-						<a href="{{ path('answers_edit', {'id': answer.id}) }}">edit</a>
+						<a href="{{ path('answers_edit', {'id': answer.id}) }}">Editer</a>
+						<a href="{{ path('answers_delete', {'id': answer.id}) }}">Supprimer</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="4">no records found</td>
+					<td colspan="4">Aucune réponse</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('answers_new', {'id': questions.id}) }}">Create new</a>
+	<a href="{{ path('answers_new', {'id': questions.id}) }}">Nouvelle reponse ?</a>
+	<a href="{{ path('questions_index') }}">Retour à la liste</a>
+</div>
 {% endblock %}

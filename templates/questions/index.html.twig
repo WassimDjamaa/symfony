@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes Questions
-{% endblock %}
+{% block title %}Mes Questions{% endblock %}
 
 {% block body %}
+<div class="container-fluid">
 	<h1>Mes Questions</h1>
-
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Id</th>
 				<th>Libelle</th>
-				<th>Is_multiple</th>
-				<th>actions</th>
+				<th>Question multiple</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -20,13 +19,15 @@
 				<tr>
 					<td>{{ question.id }}</td>
 					<td>{{ question.libelle }}</td>
-					<td>{{ question.isMultiple ? 'Yes' : 'No' }}</td>
+					<td>{{ question.isMultiple ? 'Oui' : 'Non' }}</td>
 					<td>
 						<a href="{{ path('answers_index', {'id': question.id}) }}">Réponse(s)</a>
 						<a href="{{ path('questions_answer', {'id': question.id}) }}">Questionnaire</a>
 		
 						<a href="{{ path('questions_edit', {'id': question.id}) }}">Editer</a>
 						<a href="{{ path('questions_result', {'id': question.id}) }}">Résultat</a>
+
+						<a href="{{ path('questions_delete', {'id': question.id}) }}">Supprimer</a>
 					</td>
 				</tr>
 			{% else %}
@@ -42,6 +43,5 @@
 	{% for message in app.flashes('success') %}
 		<div class="alert alert-danger" role="alert">{{ message }}</div>
 	{% endfor %}
-
-
+</div>
 {% endblock %}
