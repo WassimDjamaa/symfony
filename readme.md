@@ -13,7 +13,7 @@ Pour pouvoir tester le projet, effectuer la migration pour pouvoir remplir/crée
 * Soucis au niveau des migrations ce qui a problablement causé un dysfonctionnement dans notre code.
 * Mettre en place la possibilité de créer une question selon l'utilisateur connecté. ❌
 * Erreur lors des tests unitaires (voir photo ci-joint) et affichage des résulats sous forme graphiques ❌
-![Screenshot](erreur.png)
+![Screenshot](erreur.PNG)
 ## PS
 ***
 Ne prenez pas en compte les commits d'aujourd'hui pour pouvoir tester l'ensemble du projet. En effet, sur les commits précedents : https://github.com/WassimDjamaa/symphony/commit/1f7d296cde070323bc5a6390b51e61f22165ef51. Les fonctionnalités comme la suppression de questions ou de réponses fonctionnaient. Tout fonctionne hors mis les deux fonctionnalités précisés au dessus avec "❌". Aujourd'hui les changements majeures sont principalement le front-end.
