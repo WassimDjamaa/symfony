@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="container-fluid">
 	<h1>{{ question.libelle }}</h1>
 	{% for answer in  question.answers %}
 
@@ -21,5 +22,5 @@
 	<p>
 		<a href="{{path('questions_index')}}">retour</a>
 	</p>
-
+</div>
 {% endblock %}

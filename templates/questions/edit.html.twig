@@ -3,11 +3,13 @@
 {% block title %}Edition des Questions{% endblock %}
 
 {% block body %}
+<div class="container-fluid">
     <h1>Edition des Questions</h1>
 
     {{ include('questions/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('questions_index') }}">back retour à la liste</a>
+    <a href="{{ path('questions_index') }}">Retour à la liste</a>
 
     {{ include('questions/_delete_form.html.twig') }}
+</div>
 {% endblock %}

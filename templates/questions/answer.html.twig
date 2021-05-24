@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+<div class="container-fluid">
 	<h1>{{ question.libelle }}</h1>
 	<form action="{{ path('questions_answer', {'id': question.id}) }}" method="post">
 		{% set input_type = question.isMultiple ? 'checkbox' : 'radio' %}
@@ -19,5 +20,5 @@
 	<p>
 		<a href="{{path('questions_index')}}">retour</a>
 	</p>
-
+</div>
 {% endblock %}

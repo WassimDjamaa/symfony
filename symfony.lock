@@ -148,9 +148,15 @@
             "ref": "fc18a41d910bd168b6d83b09330d3dd892ddbcdd"
         },
         "files": [
+<<<<<<< HEAD
+            "./.env.test",
+            "./phpunit.xml.dist",
+            "./tests/bootstrap.php"
+=======
             ".env.test",
             "phpunit.xml.dist",
             "tests/bootstrap.php"
+>>>>>>> 38a5de9cba407e0ac89385af2018942a8f0eb885
         ]
     },
     "psr/cache": {
