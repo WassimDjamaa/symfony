@@ -7,7 +7,7 @@
 ***
 Bonjour, voici notre projet de création de sondage réalisé en Symfony par Wassim Djamaa et moi même Arthur Taillez. Il avait pour but de créer un sondage et de pouvoir y afficher les résulats.
 ### "Installation"
-Pour pouvoir tester le projet, effectuer la migration pour pouvoir remplir/créer les tables dans votre base de données.
+Pour pouvoir tester le projet, effectuer la migration afin de remplir et créer les tables dans votre base de données.
 ## Difficultés rencontrées
 ***
 * Soucis au niveau des migrations ce qui a problablement causé un dysfonctionnement dans notre code.
